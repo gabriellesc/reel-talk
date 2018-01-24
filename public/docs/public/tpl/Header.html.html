@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Header.html</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../doc-style.css" />
+  <script src="../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../", thisFile = "courses/courses/cscc09f15/singhcad/a2/public/tpl/Headerhtml", defaultSidebar = true;
+  </script>
+  <script src="../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>Header.html</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="nt">&lt;nav</span> <span class="na">class=</span><span class="s">&quot;navbar navbar-inverse navbar-fixed-top&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;navbar-header&quot;</span><span class="nt">&gt;</span>
+
+      <span class="c">&lt;!-- when header collapses, display a dropdown with 3 icon-bar&#39;s --&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">class=</span><span class="s">&quot;navbar-toggle collapsed&quot;</span> 
+        <span class="na">data-toggle=</span><span class="s">&quot;collapse&quot;</span> <span class="na">data-target=</span><span class="s">&quot;#nav-collapse&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;icon-bar&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;icon-bar&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;icon-bar&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+            <span class="nt">&lt;/button&gt;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code>  <span class="nx">The</span> <span class="nx">name</span> <span class="nx">of</span> <span class="nx">your</span> <span class="nx">app</span> <span class="nx">should</span> <span class="nx">be</span> <span class="nx">displayed</span> <span class="k">in</span> <span class="nx">a</span> <span class="mi">125</span><span class="o">%-</span><span class="nx">sized</span> <span class="nx">font</span> <span class="nx">on</span> <span class="nx">the</span> 
+</code></pre></div>
+
+
+
+<p>left side of the navbar; clicking on the navbar app-name should return
+the user to your app's startup or "Home" view    </p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nt">&lt;a</span> <span class="na">id=</span><span class="s">&quot;app-name&quot;</span> <span class="na">class=</span><span class="s">&quot;navbar-brand home-menu&quot;</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>Reel Talk<span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;nav-collapse&quot;</span> <span class="na">class=</span><span class="s">&quot;navbar-collapse collapse&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;nav navbar-nav navbar-right&quot;</span><span class="nt">&gt;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code>  <span class="nx">An</span> <span class="s2">&quot;About&quot;</span> <span class="nx">link</span> <span class="nx">should</span> <span class="nx">be</span> <span class="nx">displayed</span> <span class="nx">on</span> <span class="nx">the</span> <span class="nx">right</span> <span class="nx">side</span> <span class="nx">of</span> <span class="nx">the</span> 
+</code></pre></div>
+
+
+
+<p>navbar; clicking on the "About" link should switch to the 
+"About" view    </p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;about-menu&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#about&quot;</span><span class="nt">&gt;</span>About<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+          <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;nav navbar-nav&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;orderdrop&quot;</span> <span class="na">class=</span><span class="s">&quot;dropdown browse-menu&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">id=</span><span class="s">&quot;ordering&quot;</span> <span class="na">href=</span><span class="s">&quot;#movies&quot;</span> <span class="nt">&gt;</span>Browse Movies<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;dropdown-menu&quot;</span> <span class="na">id=</span><span class="s">&quot;orderDiv&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;orderForm&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;fieldset&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;sortTitle&quot;</span><span class="nt">&gt;</span>Sort Order<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">&quot;sortOrder&quot;</span> <span class="na">name=</span><span class="s">&quot;sortOrder&quot;</span> <span class="na">type=</span><span class="s">&quot;radio&quot;</span> <span class="na">value=</span><span class="s">&quot;title&quot;</span> <span class="na">checked</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;sortOrder&quot;</span><span class="nt">&gt;</span>Title<span class="nt">&lt;/label&gt;&lt;br/&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">&quot;sortOrder&quot;</span> <span class="na">name=</span><span class="s">&quot;sortOrder&quot;</span> <span class="na">type=</span><span class="s">&quot;radio&quot;</span> <span class="na">value=</span><span class="s">&quot;director&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;sortOrder&quot;</span><span class="nt">&gt;</span>Director<span class="nt">&lt;/label&gt;&lt;br/&gt;</span>
+      <span class="nt">&lt;/fieldset&gt;</span>
+    <span class="nt">&lt;/form&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;details-menu&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#movies/add&quot;</span><span class="nt">&gt;</span>Add Movie<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+        <span class="nt">&lt;/div&gt;</span> <span class="c">&lt;!--/.nav-collapse --&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/nav&gt;</span>
+
+<span class="c">&lt;!-- container to hold the notification panel --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;notifications&quot;</span> <span class="na">class=</span><span class="s">&quot;alert&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

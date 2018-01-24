@@ -1,0 +1,48 @@
+Part of the assignment that caused me the most difficulty:
+-----------------------------------------------------------
+Image upload and saving to server:
+I wanted to use the HTML5 Image API to perform this task. However, I found it to be particularly difficult because there seem to be many, many different ways to do this (based on reading the Node.js documentation, FileUpload and DataURI W3C specifications, and a number of blog posts about the subject). So I found it difficult to identify one method to use on the client side, another method to use on the server side, and allow those methods to interact. In particular, deciding in which format to send the data from the client side, and in which format to then save the data on the server side, was challenging.
+
+Noteworthy features:
+--------------------
+- public/img/fresh.png, rotten.png
+  - better quality "fresh" and "rotten" images than the ones provided - taken from the Rotten Tomatoes website
+
+- public/docs
+  - docker generated documentation for all pieces of assignment
+
+- public/js/main.js
+  - event listener attached to navbar "browse" item such that, when mouse is over "browse" item, dropdown menu is opened and remains open as long as mouse is over "browse" item or dropdown menu itself
+  - when invalid route is requested, rather than navigating to home page, app stays on same page and notification of invalid route is displayed
+  - showView function is used when navigating to a new view, to close all previous views and subviews (avoiding "ghost" views) - most code for this is taken directly from the A1 sample solution
+
+- public/js/views/details.js
+  - creates a green colour gradient to use as the background of the review swatch (behind the fresh/rotten icon)
+  - creates an AJAX request to upload the resized image file to the server using the /movies/:id/image route
+  - when displaying the newly-saved image file as the movie poster on the details page, adds a unique query string to the image URL in order to force the browser to reload the image (otherwise, because the image filename is fixed, even when the image itself changes, the browser may simply use the previous, cached poster image)
+
+- public/js/views/reviewsview.js
+  - since the reviewer view is still displayed after a review has been saved, I've allowed the user to continue to post reviews by creating a new review model and associating it with the view after the review is saved (otherwise, the user would attempt to create a new review, but would be using the previous model, which is not allowed)
+
+- routes/reel.js
+  - when the movie ID is invalid, rather than responding with a 500 status as though there were some problem with the server, the app responds with a 404 status and the message that the requested movie doesn't exist
+  - if a video directory is set in the config file, uses this directory to locate video files to serve; otherwise, uses img/videos
+  - uploads movie poster images directly from the client (rather than through the movie model), using a separate route (/movies/:id/image)
+
+- app.js
+  - displays an image (public/img/404.png) to represent a 404 server status, rather than just a message
+
+- public/css/styles.css
+  - an @media query is used to change the colour of the items in the dropdown menu when the screen is larger than a phone screen (since, on a phone screen, the dropdown menu is embedded within the navbar, which is dark)
+  - an @media query is used to change the size of the review swatches in the browse view when the screen is larger than a phone screen
+  - a :hover selector is used to expand each review display block, and each critic's affiliation, when the user mouses over it
+  - the overflow of each critic's name is clipped and a scroll-bar is added to see the rest of the content
+
+- public/tpl/Reviewer.html
+  - the number of input characters in the reviewer name and affiliation inputs is limited (to avoid excessive overflow)
+
+- public/tpl/MovieImg.html
+  - in accordance with the screenshots in the assignment specification, the movie save and delete buttons were moved to the right half of the page for aesthetic reasons
+
+- public/tpl/MovieThumb.html
+  - in order to allow each thumbnail to be a self-contained template, Javascript is embedded in this HTML and is used to determine which swatch image should be used (fresh or rotten), and whether the average "freshness" rating should be displayed or just "N/A" if no reviews exist

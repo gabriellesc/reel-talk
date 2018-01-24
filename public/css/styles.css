@@ -1,0 +1,479 @@
+html {
+    font-family: verdana, geneva, helvetica;
+    background-color: black;
+}
+
+/* default page background is black */
+body { 
+    height: auto;
+    width: 100vw;
+    /* default navbar size - non-responsive, intended to stack header above content */
+    padding-top: 50px;
+    box-sizing: border-box;
+    background-image: url("../img/heroimg.jpg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#content .row {
+    width: 100%;
+}
+
+main.container-fluid {
+    margin-right: 0px;
+}
+
+img[src$="fresh.png"] {
+    height: 30px;
+    width: auto;
+}
+
+img[src$="rotten.png"] {
+    height: 30px;
+    width: auto;
+}
+
+/* ---- HOME PAGE ---- */
+
+.home-hero {
+    color: white;
+    font-size: 36pt;
+    text-shadow: 1px 1px black;
+    text-align: center;
+/*
+    background: url("../img/heroimg.jpg") center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+*/
+    height: 100vh;
+    width: auto;
+}
+
+/* vertically-align the welcome-text near the top of the page */
+.home-hero h1 {
+    padding-top: 25vh;
+}
+
+.home-hero #add-movie-btn, #browse-movies-btn {
+    border: 4px;
+    background-color: grey;
+    color: white;
+    opacity: 0.5;
+
+    max-width: 200px;
+    margin: 10px 6px;
+    white-space: pre-line;
+
+    font-family: 'Arvo', Sans-serif;
+    font-size: 40%;
+}
+
+.home-hero .btn img {
+    float: left;
+    width: 40%;
+    height: auto;
+}
+
+/* vertically align the button-text in the center of the button */
+.home-hero .btn span {
+    vertical-align: middle;
+}
+
+.footer { 
+    background-color: black;
+    color: grey;
+    text-align: right;
+    padding-right: 1vw;
+    margin-top: 1vw;
+    width: 100vw;
+}
+
+/* ---- ABOUT PAGE ---- */
+
+.about-text {
+/*    padding-top: 3vh;*/
+    padding-left: 1vw;
+    color: white;
+/*    text-shadow: 0 0 2px black;*/
+    font-size: large;
+}
+
+.about-text h4 {
+    line-height: 150%
+}
+
+/* names of members of development team */
+.about-text p.name {
+    font-size: smaller;
+    font-weight: bold;
+}
+
+/* roles of members of development team */
+.about-text p.name .role {
+    font-weight: normal;
+}
+
+/* ---- HEADER ---- */
+
+#app-name { font-size: 125%; }
+
+/* display an "active" menu item with a black background and white-color font */
+.navbar .active {
+    color: white;
+    background-color: black;
+}
+
+.navbar #sortTitle {
+    margin: 5px 10px;
+    font-size: medium;
+}
+
+.navbar #signupForm [type="button"] {
+    margin: 5px 15px;
+}
+
+.navbar #signinForm [type="button"] {
+    margin: 5px auto;
+    width: 85%;
+    box-sizing: border-box;
+}
+
+.navbar #signoutForm [type="button"] {
+    margin: 5px auto;
+    width: 85%;
+    box-sizing: border-box;
+}
+
+.navbar .sortOrder {
+    margin: 0px 10px;
+}
+
+.navbar .signup,.signin {
+    margin: 5px 15px;
+}
+
+.navbar .dropdown-menu {
+    color: white;
+}
+
+.navbar #signoutForm {
+    display: none;
+}
+
+.navbar #signoutUsername {
+    text-align: center;
+}
+
+.navbar input[type="text"],input[type="password"] {
+    border-radius: 3px;
+    height: 5vh;
+}
+
+.navbar input.invalid {
+    border-color: red;
+}
+
+.navbar span.help-block {
+    color: red;
+}
+
+/* if not on an xs screen, make drop-down menu black text on white */
+@media screen and (min-width: 768px) {
+    .navbar .dropdown-menu {
+	color: #333;
+    }
+}
+
+/* hide "add-menu" option until user is auth'd */
+.navbar #details-menu {
+    display: none;
+}
+
+/* ---- DETAILS PAGE ---- */
+
+.details .control-label {
+    width: 8vw;
+    margin-left: 1vw;
+    padding-right: 0px;
+    text-align: right;
+    font-family: 'Andika', Serif;
+    font-size: medium;
+    color: white;
+}
+
+/* labels for movie input-fields with invalid values should be red,
+   labels for movie input-fields with valid values should be white */
+.details label.valid {
+    color: white;
+}
+
+.details label.invalid {
+    color: red;
+}
+
+.details .form-control {
+    width: 49vw;
+    margin: 1vh 1vw;
+}
+
+.details .editActions {
+    margin-top: 1vh;
+}
+
+.details .editActions input {
+    margin-bottom: 1vh;
+}
+
+.details #detailsImage {
+    margin-bottom: 2vh;
+    padding: 0px;
+    width: 100%;
+}
+
+.details #instr {
+    font-family: 'Andika', Serif;
+    font-style: italic;
+    color: white;
+    font-size: large;
+    text-align: right;
+    margin-right: 1vw;
+}
+
+.details #movieinput {
+    float: right;
+}
+
+/* hide file-type input element */
+.details input[type="file"] {
+    display: none;
+}
+
+.details .help-block {
+    color: red;
+    margin-left: 10vw;
+    margin-bottom: 0px;
+    font-family: 'Andika', Serif;
+}
+
+/* --used in Step 2
+.details #summary {
+    color: red;
+    font-size: x-large;
+    font-weight: bold;    
+    margin-top: 2vh;
+}
+
+.details #reviewLink {
+    color: dodgerblue;
+    font-size: large;
+    font-weight: bold;
+    margin-left: 1vw;
+}
+*/
+
+.details #swatch {
+    width: 60px;
+    height: 60px;
+    margin: 1vh 0px;
+    padding: 0px;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 2px 2px;
+
+    font-weight: bold;
+
+    align-content: center;
+    text-align: center;
+
+    font-size: small;
+}
+
+.details #avg {
+    color: white;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.details #revLink a {
+    color: yellow;
+}
+
+
+/* if not on an xs screen, decrease input-field width such that input-fields and 
+   corresponding labels are on the same line, and increase size of review swatch */
+@media screen and (min-width: 768px) {
+
+    .details .form-control {
+	width: 39vw;
+    }
+
+    .details #swatch {
+	width: 100px;
+	height: 100px;
+
+	font-size: medium;
+    }
+
+    .details #avg {
+	margin-top: 25px;
+	margin-bottom: 10px;
+    }
+
+}
+
+
+/* ---- BROWSE PAGE ---- */
+
+.thumbnail {
+    position: relative;
+    border-width: 1px;
+    border-radius: 4px;
+    border-color: #25383C;
+    margin-right: 5px;
+    margin-top: 2vh;
+    padding: 0px;
+    background-color: black;
+}
+
+.browse .description {
+    text-align: right;   
+    font-family: verdana, geneva, helvetica;
+    font-size: 80%;
+    color: white;
+    margin: 2px;
+}
+
+.browse .description li {
+    margin-left: 0px;
+    margin-right: 15px;
+
+    /* hide any text that overflows the line with an ellipsis */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap; 
+}
+
+.browse ul {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none; /* no list bullets */
+}
+
+.browse .movie-title {
+    font-size: larger;
+}
+
+.browse .swatch {
+    width: 65px;
+    height: 60px;
+    margin: 1vh 1px;
+    padding: 0px;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    font-weight: bold;
+
+    align-content: center;
+    text-align: center;
+
+    font-size: small;
+}
+
+.browse .avg {
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 6px;
+}
+
+.browse .revLink a {
+    color: yellow;
+}
+
+
+/* ---- REVIEW PAGE ---- */
+.reviews .well {
+    margin-top: 2vh;
+}
+
+.reviews #banner label {
+    font-size: medium;
+    font-weight: bold;
+}
+
+.reviews #summary {
+    color: red;
+    font-size: x-large;
+    font-style: italic;
+    font-weight: bold;
+    margin-left: 3vw;
+}
+
+.reviews #review-btn {
+    margin-top: 2vh;
+}
+
+#reviewer label {
+    color: white;
+}
+
+.reviews .reviewthumb {
+    font-weight: bold;
+}
+
+.reviews .critic {
+    color: white;
+    height: 3em;
+    overflow: auto;
+}
+
+.reviews .affil {
+    color: white;
+    font-style: italic;
+}
+
+.reviews .reviewthumb .well {
+    overflow: hidden;
+    height: 30px;
+    box-sizing: content-box;
+}
+
+.reviews .reviewthumb .well:hover {
+    height: auto;
+}
+
+.reviews .reviewthumb .criticImg {
+    float: left;
+}
+
+.reviews .reviewthumb [alt="Critic"] {
+    width: 40px;
+}
+
+.reviews .reviewthumb .affil {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 1.5em;
+}
+
+.reviews .reviewthumb .affil:hover {
+    height: auto;
+}
+
+.reviews .revName {
+    height: 2.5em;
+}
+
+.reviews>.col-xs-12 {
+    margin-bottom: 1vh;
+}
+
+/* ---- NOTIFICATION PANEL ---- */
+
+#notifications {
+    margin-top: 2vh;
+    margin-bottom: 0px;
+    display: none;
+}

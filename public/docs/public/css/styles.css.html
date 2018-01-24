@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>styles.css</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../doc-style.css" />
+  <script src="../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../", thisFile = "courses/courses/cscc09f15/singhcad/a2/public/css/stylescss", defaultSidebar = true;
+  </script>
+  <script src="../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>styles.css</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="nt">html</span> <span class="p">{</span>
+    <span class="k">font-family</span><span class="o">:</span> <span class="n">verdana</span><span class="o">,</span> <span class="n">geneva</span><span class="o">,</span> <span class="n">helvetica</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* default page background is black */</span>
+<span class="nt">body</span> <span class="p">{</span> 
+    <span class="k">background-color</span><span class="o">:</span> <span class="nb">black</span><span class="p">;</span>
+    <span class="k">width</span><span class="o">:</span> <span class="m">99</span><span class="n">vw</span><span class="p">;</span>
+    <span class="k">height</span><span class="o">:</span> <span class="k">auto</span><span class="p">;</span>
+    <span class="c">/* default navbar size - non-responsive, intended to stack header above content */</span>
+    <span class="k">padding-top</span><span class="o">:</span> <span class="m">50px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">img</span><span class="o">[</span><span class="nt">src</span><span class="err">$</span><span class="o">=</span><span class="s2">&quot;fresh.png&quot;</span><span class="o">]</span> <span class="p">{</span>
+    <span class="k">height</span><span class="o">:</span> <span class="m">30px</span><span class="p">;</span>
+    <span class="k">width</span><span class="o">:</span> <span class="k">auto</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">img</span><span class="o">[</span><span class="nt">src</span><span class="err">$</span><span class="o">=</span><span class="s2">&quot;rotten.png&quot;</span><span class="o">]</span> <span class="p">{</span>
+    <span class="k">height</span><span class="o">:</span> <span class="m">30px</span><span class="p">;</span>
+    <span class="k">width</span><span class="o">:</span> <span class="k">auto</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* ---- HOME PAGE ---- */</span>
+
+<span class="nc">.home-hero</span> <span class="p">{</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span>
+    <span class="k">font-size</span><span class="o">:</span> <span class="m">36pt</span><span class="p">;</span>
+    <span class="k">text-shadow</span><span class="o">:</span> <span class="m">1px</span> <span class="m">1px</span> <span class="nb">black</span><span class="p">;</span>
+    <span class="k">text-align</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>
+
+    <span class="k">background</span><span class="o">:</span> <span class="sx">url(&quot;../img/heroimg.jpg&quot;)</span> <span class="k">center</span> <span class="k">center</span><span class="p">;</span>
+    <span class="k">background</span><span class="o">-</span><span class="k">size</span><span class="o">:</span> <span class="n">cover</span><span class="p">;</span>
+    <span class="k">background-repeat</span><span class="o">:</span> <span class="k">no-repeat</span><span class="p">;</span>
+
+    <span class="k">height</span><span class="o">:</span> <span class="m">100</span><span class="n">vh</span><span class="p">;</span>
+    <span class="k">width</span><span class="o">:</span> <span class="k">auto</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* vertically-align the welcome-text near the top of the page */</span>
+<span class="nc">.home-hero</span> <span class="nt">h1</span> <span class="p">{</span>
+    <span class="k">padding-top</span><span class="o">:</span> <span class="m">25</span><span class="n">vh</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.home-hero</span> <span class="nf">#add-movie-btn</span><span class="o">,</span> <span class="nf">#browse-movies-btn</span> <span class="p">{</span>
+    <span class="k">border</span><span class="o">:</span> <span class="m">4px</span><span class="p">;</span>
+    <span class="k">background-color</span><span class="o">:</span> <span class="n">grey</span><span class="p">;</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span>
+    <span class="k">opacity</span><span class="o">:</span> <span class="m">0</span><span class="o">.</span><span class="m">5</span><span class="p">;</span>
+
+    <span class="k">max-width</span><span class="o">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="k">margin</span><span class="o">:</span> <span class="m">10px</span> <span class="m">6px</span><span class="p">;</span>
+    <span class="k">white-space</span><span class="o">:</span> <span class="n">pre</span><span class="o">-</span><span class="n">line</span><span class="p">;</span>
+
+    <span class="k">font-family</span><span class="o">:</span> <span class="s1">&#39;Arvo&#39;</span><span class="o">,</span> <span class="n">Sans</span><span class="o">-</span><span class="k">serif</span><span class="p">;</span>
+    <span class="k">font-size</span><span class="o">:</span> <span class="m">40</span><span class="o">%</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.home-hero</span> <span class="nc">.btn</span> <span class="nt">img</span> <span class="p">{</span>
+    <span class="k">float</span><span class="o">:</span> <span class="k">left</span><span class="p">;</span>
+    <span class="k">width</span><span class="o">:</span> <span class="m">40</span><span class="o">%</span><span class="p">;</span>
+    <span class="k">height</span><span class="o">:</span> <span class="k">auto</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* vertically align the button-text in the center of the button */</span>
+<span class="nc">.home-hero</span> <span class="nc">.btn</span> <span class="nt">span</span> <span class="p">{</span>
+    <span class="k">vertical-align</span><span class="o">:</span> <span class="k">middle</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.footer</span> <span class="p">{</span> 
+    <span class="k">background-color</span><span class="o">:</span> <span class="nb">black</span><span class="p">;</span>
+    <span class="k">color</span><span class="o">:</span> <span class="n">grey</span><span class="p">;</span>
+    <span class="k">text-align</span><span class="o">:</span> <span class="k">right</span><span class="p">;</span>
+    <span class="k">padding-right</span><span class="o">:</span> <span class="m">1</span><span class="n">vw</span><span class="p">;</span>
+    <span class="k">width</span><span class="o">:</span> <span class="m">99</span><span class="n">vw</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* ---- ABOUT PAGE ---- */</span>
+
+<span class="nc">.about-text</span> <span class="p">{</span>
+<span class="c">/*    padding-top: 3vh;*/</span>
+    <span class="k">padding-left</span><span class="o">:</span> <span class="m">1</span><span class="n">vw</span><span class="p">;</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span>
+    <span class="k">font-size</span><span class="o">:</span> <span class="k">large</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.about-text</span> <span class="nt">h4</span> <span class="p">{</span>
+    <span class="k">line-height</span><span class="o">:</span> <span class="m">150</span><span class="o">%</span>
+<span class="p">}</span>
+
+<span class="c">/* names of members of development team */</span>
+<span class="nc">.about-text</span> <span class="nt">p</span><span class="nc">.name</span> <span class="p">{</span>
+    <span class="k">font-size</span><span class="o">:</span> <span class="k">smaller</span><span class="p">;</span>
+    <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* roles of members of development team */</span>
+<span class="nc">.about-text</span> <span class="nt">p</span><span class="nc">.name</span> <span class="nc">.role</span> <span class="p">{</span>
+    <span class="k">font-weight</span><span class="o">:</span> <span class="k">normal</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* ---- HEADER ---- */</span>
+
+<span class="nf">#app-name</span> <span class="p">{</span> <span class="k">font-size</span><span class="o">:</span> <span class="m">125</span><span class="o">%</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="c">/* display an &quot;active&quot; menu item with a black background and white-color font */</span>
+<span class="nc">.navbar</span> <span class="nc">.active</span> <span class="p">{</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span>
+    <span class="k">background-color</span><span class="o">:</span> <span class="nb">black</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.navbar</span> <span class="nf">#sortTitle</span> <span class="p">{</span>
+    <span class="k">margin</span><span class="o">:</span> <span class="m">5px</span> <span class="m">10px</span><span class="p">;</span>
+    <span class="k">font-size</span><span class="o">:</span> <span class="k">medium</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.navbar</span> <span class="nc">.sortOrder</span> <span class="p">{</span>
+    <span class="k">margin</span><span class="o">:</span> <span class="m">0px</span> <span class="m">10px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.navbar</span> <span class="nf">#orderDiv</span> <span class="p">{</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* if not on an xs screen, make drop-down menu black text on white */</span>
+<span class="k">@media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">768px</span><span class="o">)</span> <span class="p">{</span>
+    <span class="nc">.navbar</span> <span class="nf">#orderDiv</span> <span class="p">{</span>
+  <span class="k">color</span><span class="o">:</span> <span class="m">#333</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c">/* ---- DETAILS PAGE ---- */</span>
+
+<span class="nc">.details</span> <span class="nc">.control-label</span> <span class="p">{</span>
+    <span class="k">width</span><span class="o">:</span> <span class="m">8</span><span class="n">vw</span><span class="p">;</span>
+    <span class="k">margin-left</span><span class="o">:</span> <span class="m">1</span><span class="n">vw</span><span class="p">;</span>
+    <span class="k">padding-right</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span>
+    <span class="k">text-align</span><span class="o">:</span> <span class="k">right</span><span class="p">;</span>
+    <span class="k">font-family</span><span class="o">:</span> <span class="s1">&#39;Andika&#39;</span><span class="o">,</span> <span class="n">Serif</span><span class="p">;</span>
+    <span class="k">font-size</span><span class="o">:</span> <span class="k">medium</span><span class="p">;</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>labels for movie input-fields with invalid values should be red,
+labels for movie input-fields with valid values should be white   </p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nc">.details</span> <span class="nt">label</span><span class="nc">.valid</span> <span class="p">{</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.details</span> <span class="nt">label</span><span class="nc">.invalid</span> <span class="p">{</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.details</span> <span class="nc">.form-control</span> <span class="p">{</span>
+    <span class="k">width</span><span class="o">:</span> <span class="m">49</span><span class="n">vw</span><span class="p">;</span>
+    <span class="k">margin</span><span class="o">:</span> <span class="m">1</span><span class="n">vh</span> <span class="m">1</span><span class="n">vw</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.details</span> <span class="nc">.editActions</span> <span class="p">{</span>
+    <span class="k">margin-top</span><span class="o">:</span> <span class="m">1</span><span class="n">vh</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.details</span> <span class="nc">.editActions</span> <span class="nt">input</span> <span class="p">{</span>
+    <span class="k">margin-bottom</span><span class="o">:</span> <span class="m">1</span><span class="n">vh</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.details</span> <span class="nf">#detailsImage</span> <span class="p">{</span>
+    <span class="k">margin-bottom</span><span class="o">:</span> <span class="m">2</span><span class="n">vh</span><span class="p">;</span>
+    <span class="k">padding</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span>
+    <span class="k">width</span><span class="o">:</span> <span class="m">100</span><span class="o">%</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.details</span> <span class="nf">#instr</span> <span class="p">{</span>
+    <span class="k">font-family</span><span class="o">:</span> <span class="s1">&#39;Andika&#39;</span><span class="o">,</span> <span class="n">Serif</span><span class="p">;</span>
+    <span class="k">font-style</span><span class="o">:</span> <span class="k">italic</span><span class="p">;</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span>
+    <span class="k">font-size</span><span class="o">:</span> <span class="k">large</span><span class="p">;</span>
+    <span class="k">text-align</span><span class="o">:</span> <span class="k">right</span><span class="p">;</span>
+    <span class="k">margin-right</span><span class="o">:</span> <span class="m">1</span><span class="n">vw</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.details</span> <span class="nf">#movieinput</span> <span class="p">{</span>
+    <span class="k">float</span><span class="o">:</span> <span class="k">right</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* hide file-type input element */</span>
+<span class="nc">.details</span> <span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s2">&quot;file&quot;</span><span class="o">]</span> <span class="p">{</span>
+    <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.details</span> <span class="nc">.help-block</span> <span class="p">{</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+    <span class="k">margin-left</span><span class="o">:</span> <span class="m">10</span><span class="n">vw</span><span class="p">;</span>
+    <span class="k">margin-bottom</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span>
+    <span class="k">font-family</span><span class="o">:</span> <span class="s1">&#39;Andika&#39;</span><span class="o">,</span> <span class="n">Serif</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>--used in Step 2
+.details #summary {
+    color: red;
+    font-size: x-large;
+    font-weight: bold; <br />
+    margin-top: 2vh;
+}</p>
+
+<p>.details #reviewLink {
+    color: dodgerblue;
+    font-size: large;
+    font-weight: bold;
+    margin-left: 1vw;
+}</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+<span class="nc">.details</span> <span class="nf">#swatch</span> <span class="p">{</span>
+    <span class="k">width</span><span class="o">:</span> <span class="m">60px</span><span class="p">;</span>
+    <span class="k">height</span><span class="o">:</span> <span class="m">60px</span><span class="p">;</span>
+    <span class="k">margin</span><span class="o">:</span> <span class="m">1</span><span class="n">vh</span> <span class="m">0px</span><span class="p">;</span>
+    <span class="k">padding</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span>
+
+    <span class="k">background-repeat</span><span class="o">:</span> <span class="k">no-repeat</span><span class="p">;</span>
+    <span class="k">background</span><span class="o">-</span><span class="k">size</span><span class="o">:</span> <span class="n">cover</span><span class="p">;</span>
+    <span class="n">box</span><span class="o">-</span><span class="n">shadow</span><span class="o">:</span> <span class="m">2px</span> <span class="m">2px</span><span class="p">;</span>
+
+    <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
+
+    <span class="n">align</span><span class="o">-</span><span class="k">content</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>
+    <span class="k">text-align</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>
+
+    <span class="k">font-size</span><span class="o">:</span> <span class="n">small</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.details</span> <span class="nf">#avg</span> <span class="p">{</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span>
+    <span class="k">margin-top</span><span class="o">:</span> <span class="m">6px</span><span class="p">;</span>
+    <span class="k">margin-bottom</span><span class="o">:</span> <span class="m">6px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.details</span> <span class="nf">#revLink</span> <span class="nt">a</span> <span class="p">{</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">yellow</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<p>if not on an xs screen, decrease input-field width such that input-fields and 
+corresponding labels are on the same line, and increase size of review swatch   </p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="k">@media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">768px</span><span class="o">)</span> <span class="p">{</span>
+
+    <span class="nc">.details</span> <span class="nc">.form-control</span> <span class="p">{</span>
+  <span class="k">width</span><span class="o">:</span> <span class="m">39</span><span class="n">vw</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nc">.details</span> <span class="nf">#swatch</span> <span class="p">{</span>
+  <span class="k">width</span><span class="o">:</span> <span class="m">100px</span><span class="p">;</span>
+  <span class="k">height</span><span class="o">:</span> <span class="m">100px</span><span class="p">;</span>
+
+  <span class="k">font-size</span><span class="o">:</span> <span class="k">medium</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nc">.details</span> <span class="nf">#avg</span> <span class="p">{</span>
+  <span class="k">margin-top</span><span class="o">:</span> <span class="m">25px</span><span class="p">;</span>
+  <span class="k">margin-bottom</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+
+<span class="c">/* ---- BROWSE PAGE ---- */</span>
+
+<span class="nc">.thumbnail</span> <span class="p">{</span>
+    <span class="k">position</span><span class="o">:</span> <span class="k">relative</span><span class="p">;</span>
+    <span class="k">border-width</span><span class="o">:</span> <span class="m">1px</span><span class="p">;</span>
+    <span class="k">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">4px</span><span class="p">;</span>
+    <span class="k">border-color</span><span class="o">:</span> <span class="m">#25383C</span><span class="p">;</span>
+    <span class="k">margin-right</span><span class="o">:</span> <span class="m">5px</span><span class="p">;</span>
+    <span class="k">margin-top</span><span class="o">:</span> <span class="m">2</span><span class="n">vh</span><span class="p">;</span>
+    <span class="k">padding</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span>
+    <span class="k">background-color</span><span class="o">:</span> <span class="nb">black</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.browse</span> <span class="nc">.description</span> <span class="p">{</span>
+    <span class="k">text-align</span><span class="o">:</span> <span class="k">right</span><span class="p">;</span>   
+    <span class="k">font-family</span><span class="o">:</span> <span class="n">verdana</span><span class="o">,</span> <span class="n">geneva</span><span class="o">,</span> <span class="n">helvetica</span><span class="p">;</span>
+    <span class="k">font-size</span><span class="o">:</span> <span class="m">80</span><span class="o">%</span><span class="p">;</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span>
+    <span class="k">margin</span><span class="o">:</span> <span class="m">2px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.browse</span> <span class="nc">.description</span> <span class="nt">li</span> <span class="p">{</span>
+    <span class="k">margin-left</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span>
+    <span class="k">margin-right</span><span class="o">:</span> <span class="m">15px</span><span class="p">;</span>
+
+    <span class="c">/* hide any text that overflows the line with an ellipsis */</span>
+    <span class="k">text</span><span class="o">-</span><span class="k">overflow</span><span class="o">:</span> <span class="n">ellipsis</span><span class="p">;</span>
+    <span class="k">overflow</span><span class="o">:</span> <span class="k">hidden</span><span class="p">;</span>
+    <span class="k">white-space</span><span class="o">:</span> <span class="k">nowrap</span><span class="p">;</span> 
+<span class="p">}</span>
+
+<span class="nc">.browse</span> <span class="nt">ul</span> <span class="p">{</span>
+    <span class="k">margin</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span>
+    <span class="k">padding</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span>
+    <span class="k">list-style-type</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="c">/* no list bullets */</span>
+<span class="p">}</span>
+
+<span class="nc">.browse</span> <span class="nc">.movie-title</span> <span class="p">{</span>
+    <span class="k">font-size</span><span class="o">:</span> <span class="k">larger</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.browse</span> <span class="nc">.swatch</span> <span class="p">{</span>
+    <span class="k">width</span><span class="o">:</span> <span class="m">65px</span><span class="p">;</span>
+    <span class="k">height</span><span class="o">:</span> <span class="m">60px</span><span class="p">;</span>
+    <span class="k">margin</span><span class="o">:</span> <span class="m">1</span><span class="n">vh</span> <span class="m">1px</span><span class="p">;</span>
+    <span class="k">padding</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span>
+
+    <span class="k">background-repeat</span><span class="o">:</span> <span class="k">no-repeat</span><span class="p">;</span>
+    <span class="k">background</span><span class="o">-</span><span class="k">size</span><span class="o">:</span> <span class="n">cover</span><span class="p">;</span>
+
+    <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
+
+    <span class="n">align</span><span class="o">-</span><span class="k">content</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>
+    <span class="k">text-align</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>
+
+    <span class="k">font-size</span><span class="o">:</span> <span class="n">small</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.browse</span> <span class="nc">.avg</span> <span class="p">{</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span>
+    <span class="k">margin-top</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span>
+    <span class="k">margin-bottom</span><span class="o">:</span> <span class="m">6px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.browse</span> <span class="nc">.revLink</span> <span class="nt">a</span> <span class="p">{</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">yellow</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="c">/* ---- REVIEW PAGE ---- */</span>
+<span class="nc">.reviews</span> <span class="nc">.well</span> <span class="p">{</span>
+    <span class="k">margin-top</span><span class="o">:</span> <span class="m">2</span><span class="n">vh</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.reviews</span> <span class="nf">#banner</span> <span class="nt">label</span> <span class="p">{</span>
+    <span class="k">font-size</span><span class="o">:</span> <span class="k">medium</span><span class="p">;</span>
+    <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.reviews</span> <span class="nf">#summary</span> <span class="p">{</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+    <span class="k">font-size</span><span class="o">:</span> <span class="k">x-large</span><span class="p">;</span>
+    <span class="k">font-style</span><span class="o">:</span> <span class="k">italic</span><span class="p">;</span>
+    <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
+    <span class="k">margin-left</span><span class="o">:</span> <span class="m">3</span><span class="n">vw</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.reviews</span> <span class="nf">#review-btn</span> <span class="p">{</span>
+    <span class="k">margin-top</span><span class="o">:</span> <span class="m">2</span><span class="n">vh</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nf">#reviewer</span> <span class="nt">label</span> <span class="p">{</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.reviews</span> <span class="nc">.reviewthumb</span> <span class="p">{</span>
+    <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.reviews</span> <span class="nc">.critic</span> <span class="p">{</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span>
+    <span class="k">height</span><span class="o">:</span> <span class="m">3em</span><span class="p">;</span>
+    <span class="k">overflow</span><span class="o">:</span> <span class="k">auto</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.reviews</span> <span class="nc">.affil</span> <span class="p">{</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span>
+    <span class="k">font-style</span><span class="o">:</span> <span class="k">italic</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.reviews</span> <span class="nc">.reviewthumb</span> <span class="nc">.well</span> <span class="p">{</span>
+    <span class="k">overflow</span><span class="o">:</span> <span class="k">hidden</span><span class="p">;</span>
+    <span class="k">height</span><span class="o">:</span> <span class="m">30px</span><span class="p">;</span>
+    <span class="n">box</span><span class="o">-</span><span class="n">sizing</span><span class="o">:</span> <span class="k">content</span><span class="o">-</span><span class="n">box</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.reviews</span> <span class="nc">.reviewthumb</span> <span class="nc">.well</span><span class="nd">:hover</span> <span class="p">{</span>
+    <span class="k">height</span><span class="o">:</span> <span class="k">auto</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.reviews</span> <span class="nc">.reviewthumb</span> <span class="nc">.criticImg</span> <span class="p">{</span>
+    <span class="k">float</span><span class="o">:</span> <span class="k">left</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.reviews</span> <span class="nc">.reviewthumb</span> <span class="o">[</span><span class="nt">alt</span><span class="o">=</span><span class="s2">&quot;Critic&quot;</span><span class="o">]</span> <span class="p">{</span>
+    <span class="k">width</span><span class="o">:</span> <span class="m">40px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.reviews</span> <span class="nc">.reviewthumb</span> <span class="nc">.affil</span> <span class="p">{</span>
+    <span class="k">overflow</span><span class="o">:</span> <span class="k">hidden</span><span class="p">;</span>
+    <span class="k">text</span><span class="o">-</span><span class="k">overflow</span><span class="o">:</span> <span class="n">ellipsis</span><span class="p">;</span>
+    <span class="k">height</span><span class="o">:</span> <span class="m">1.5em</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.reviews</span> <span class="nc">.reviewthumb</span> <span class="nc">.affil</span><span class="nd">:hover</span> <span class="p">{</span>
+    <span class="k">height</span><span class="o">:</span> <span class="k">auto</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.reviews</span> <span class="nc">.revName</span> <span class="p">{</span>
+    <span class="k">height</span><span class="o">:</span> <span class="m">2.5em</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* ---- NOTIFICATION PANEL ---- */</span>
+
+<span class="nf">#notifications</span> <span class="p">{</span>
+    <span class="k">margin-top</span><span class="o">:</span> <span class="m">2</span><span class="n">vh</span><span class="p">;</span>
+    <span class="k">margin-bottom</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span>
+    <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

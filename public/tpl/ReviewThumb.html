@@ -1,0 +1,13 @@
+<!-- Individual review thumbnail, with information interpolated from corresponding
+     review model -->
+<div class="reviewthumb col-lg-2 col-md-3 col-sm-4 col-xs-6">
+  <div class="well well-sm">
+    <img alt="Rating Image" src=<%- freshness ? "../img/fresh.png" : "../img/rotten.png" %>>&nbsp<q><%- reviewText %></q>
+  </div>
+
+  <div class="critic">
+    <div class="criticImg"><img alt="Critic" src="../img/critic.gif"></div>
+    <span class="revName"><%- reviewName %></span>
+  </div>
+  <div class="affil"><%- reviewAffil %></div>
+</div>

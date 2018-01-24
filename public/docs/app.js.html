@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>app.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="doc-style.css" />
+  <script src="doc-filelist.js"></script>
+  <script>
+    var relativeDir = "", thisFile = "courses/courses/cscc09f15/singhcad/a2/appjs", defaultSidebar = true;
+  </script>
+  <script src="doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>app.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<p>app.js Node.js server</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="s2">&quot;use strict;&quot;</span>   <span class="c1">// flag JS errors </span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Module dependencies:</p>
+  </div>
+  <div class="body"><p>require() loads a nodejs "module" - basically a file.  Anything
+exported from that file (with "exports") can now be dotted off
+the value returned by require(), in this case e.g. reel.api
+The convention is use the same name for variable and module.</p>
+  </div>
+</div>
+
+<p>nodejs looks in <currpath>/node_modules for these</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;http&quot;</span><span class="p">),</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>NOTE, use the version of "express" linked to the assignment handout</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;express&quot;</span><span class="p">),</span>
+<span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;fs&quot;</span><span class="p">),</span>
+<span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">),</span>
+<span class="nx">url</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">),</span>
+<span class="nx">multer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;multer&quot;</span><span class="p">),</span>
+<span class="nx">logger</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;morgan&quot;</span><span class="p">),</span>
+<span class="nx">compression</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">),</span>
+<span class="nx">session</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;express-session&quot;</span><span class="p">),</span>
+<span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;body-parser&quot;</span><span class="p">),</span>
+<span class="nx">methodOverride</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;method-override&quot;</span><span class="p">),</span>
+<span class="nx">directory</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;serve-index&quot;</span><span class="p">),</span>
+<span class="nx">errorHandler</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;errorhandler&quot;</span><span class="p">),</span>
+<span class="nx">basicAuth</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;basic-auth-connect&quot;</span><span class="p">),</span>  <span class="c1">// optional, for HTTP auth</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<p>config is an object module, that defines app-config attribues,
+such as "port", DB parameters</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">config</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;./config&quot;</span><span class="p">),</span>
+<span class="nx">reel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/reel.js&#39;</span><span class="p">);</span>  <span class="c1">// route handlers</span>
+
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>  <span class="c1">// Create Express app server</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>Configure app server</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>use PORT environment variable, or local config file value</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;port&#39;</span><span class="p">,</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">||</span> <span class="nx">config</span><span class="p">.</span><span class="nx">port</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>activate basic HTTP authentication (to protect your solution files)</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">basicAuth</span><span class="p">(</span><span class="s1">&#39;gabrielle&#39;</span><span class="p">,</span> <span class="s1">&#39;greenparrot&#39;</span><span class="p">));</span>  <span class="c1">// REPLACE username/password</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>change param value to control level of logging</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">logger</span><span class="p">(</span><span class="s1">&#39;dev&#39;</span><span class="p">));</span>  <span class="c1">// &#39;combined&#39;, &#39;common&#39;, &#39;short&#39;, &#39;tiny&#39;, &#39;dev&#39;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>use compression (gzip) to reduce size of HTTP responses</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">compression</span><span class="p">());</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>parse HTTP request body</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span><span class="nx">limit</span><span class="o">:</span> <span class="s1">&#39;5mb&#39;</span><span class="p">}));</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span>
+    <span class="nx">limit</span><span class="o">:</span> <span class="s1">&#39;5mb&#39;</span><span class="p">,</span>
+    <span class="nx">extended</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">}));</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<p>set file-upload directory for poster images</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">uploadImage</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">({</span><span class="nx">dest</span><span class="o">:</span> <span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">&#39;/public/img/uploads/&#39;</span><span class="p">});</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>checks req.body for HTTP method overrides</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">methodOverride</span><span class="p">());</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<p>App routes (RESTful API) - handler implementation resides in routes/reel.js</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
+</div>
+<p>Perform route lookup based on HTTP method and URL.
+Explicit routes go before express.static so that proper
+handler is invoked rather than static-content processor</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+</div>
+<p>Heartbeat test of server API</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="nx">reel</span><span class="p">.</span><span class="nx">api</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
+</div>
+<p>Retrieve a single movie by its id attribute
+GET /movies/:id (handler getMovie) </p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/movies/:id&#39;</span><span class="p">,</span> <span class="nx">reel</span><span class="p">.</span><span class="nx">getMovie</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+</div>
+<p>Create new movie
+POST /movies (handler addMovie)</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/movies&#39;</span><span class="p">,</span> <span class="nx">reel</span><span class="p">.</span><span class="nx">addMovie</span><span class="p">);</span>    
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-18" id="section-18">&#182;</a>
+</div>
+<p>GET /movies (handler getMovies)</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/movies&#39;</span><span class="p">,</span> <span class="nx">reel</span><span class="p">.</span><span class="nx">getMovies</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-19" id="section-19">&#182;</a>
+</div>
+<p>PUT /movies/:id (handler editMovie)</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">app</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s1">&#39;/movies/:id&#39;</span><span class="p">,</span> <span class="nx">reel</span><span class="p">.</span><span class="nx">editMovie</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-20" id="section-20">&#182;</a>
+</div>
+<p>DELETE /movies/:id (handler deleteMovie) </p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">app</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s1">&#39;/movies/:id&#39;</span><span class="p">,</span> <span class="nx">reel</span><span class="p">.</span><span class="nx">deleteMovie</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-21" id="section-21">&#182;</a>
+</div>
+<p>Save a movie poster image</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">app</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s1">&#39;/movies/:id/image&#39;</span><span class="p">,</span> <span class="nx">reel</span><span class="p">.</span><span class="nx">uploadImage</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-22" id="section-22">&#182;</a>
+</div>
+<p>Retrieve a collection of reviews for movie with given id
+GET /movies/:id/reviews (handler getReviews)</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/movies/:id/reviews&#39;</span><span class="p">,</span> <span class="nx">reel</span><span class="p">.</span><span class="nx">getReviews</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-23" id="section-23">&#182;</a>
+</div>
+<p>Create a new review in the collection
+POST /movies/:id/reviews (handler addReview)</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/movies/:id/reviews&#39;</span><span class="p">,</span> <span class="nx">reel</span><span class="p">.</span><span class="nx">addReview</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-24" id="section-24">&#182;</a>
+</div>
+<p>GET /movies/:id/video (handler playMovie)</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/movies/:id/video&#39;</span><span class="p">,</span> <span class="nx">reel</span><span class="p">.</span><span class="nx">playMovie</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-25" id="section-25">&#182;</a>
+</div>
+<p>location of app's static content</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">&quot;/public&quot;</span><span class="p">));</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-26" id="section-26">&#182;</a>
+</div>
+<p>return error details to client - use only during development</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="k">if</span> <span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">env</span> <span class="o">===</span> <span class="s1">&#39;development&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">errorHandler</span><span class="p">({</span> <span class="nx">dumpExceptions</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">showStack</span><span class="o">:</span><span class="kc">true</span> <span class="p">}));</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-27" id="section-27">&#182;</a>
+</div>
+<p>Default-route middleware, in case none of above match
+respond with a status-code of 404 and an appropriate HTML-formatted message
+for display by the browser.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">404</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;&lt;body title=&#39;Page Not Found&#39; &quot;</span> <span class="o">+</span>
+       <span class="s2">&quot;style=background-image:url(&#39;/img/404.jpg&#39;)&gt;&quot;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-28" id="section-28">&#182;</a>
+</div>
+<p>Image credit: <a href='http://worrydream.com/404notfound'>http://worrydream.com/404notfound</a></p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="p">});</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-29" id="section-29">&#182;</a>
+</div>
+<p>Start HTTP server</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">app</span><span class="p">).</span><span class="nx">listen</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;port&#39;</span><span class="p">),</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Express server listening on port %d in %s mode&quot;</span><span class="p">,</span>
+    <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;port&#39;</span><span class="p">),</span> <span class="nx">config</span><span class="p">.</span><span class="nx">env</span> <span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

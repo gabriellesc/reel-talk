@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>movie.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../../doc-style.css" />
+  <script src="../../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../../", thisFile = "courses/courses/cscc09f15/singhcad/a2/public/js/models/moviejs", defaultSidebar = true;
+  </script>
+  <script src="../../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>movie.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<p>catch simple errors</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>declare reel-app namespace if it doesn't already exist</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">reel</span> <span class="o">=</span>  <span class="nx">reel</span> <span class="o">||</span> <span class="p">{};</span>
+
+<span class="nx">reel</span><span class="p">.</span><span class="nx">Movie</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">idAttribute</span><span class="o">:</span> <span class="s2">&quot;_id&quot;</span><span class="p">,</span>
+
+    <span class="nx">defaults</span><span class="o">:</span> <span class="p">{</span>
+  <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1">// movie title</span>
+  <span class="s2">&quot;released&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1">// release year</span>
+  <span class="s2">&quot;director&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1">// movie&#39;s director</span>
+  <span class="s2">&quot;starring&quot;</span><span class="o">:</span> <span class="p">[],</span>  <span class="c1">// array principal actors</span>
+  <span class="s2">&quot;rating&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1">// MPAA movie rating: G, PG, PG-13, R, NC-17, NR</span>
+  <span class="s2">&quot;duration&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>   <span class="c1">// run-time in minutes</span>
+  <span class="s2">&quot;genre&quot;</span><span class="o">:</span> <span class="p">[],</span>   <span class="c1">// genre terms, e.g. action, comedy, etc</span>
+  <span class="s2">&quot;synopsis&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1">// brief outline of the movie</span>
+  <span class="s2">&quot;freshTotal&quot;</span><span class="o">:</span> <span class="mf">0.0</span><span class="p">,</span>   <span class="c1">// cumulative total of review fresh (1.0) votes</span>
+  <span class="s2">&quot;freshVotes&quot;</span><span class="o">:</span> <span class="mf">0.0</span><span class="p">,</span>   <span class="c1">// number of review ratings</span>
+  <span class="s2">&quot;trailer&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>  <span class="c1">// URL for trailer/movie-streaming</span>
+  <span class="s2">&quot;poster&quot;</span><span class="o">:</span> <span class="s2">&quot;img/placeholder.png&quot;</span><span class="p">,</span>  <span class="c1">// movie-poster image URL</span>
+  <span class="s2">&quot;dated&quot;</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>  <span class="c1">// date of movie posting  </span>
+    <span class="p">},</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>validation function, called by model.save() (and optionally, model.set())
+if options.field is passed, this contains the name of the attribute to be
+validated; otherwise, validate all attributes</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">validate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">attrs</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">validationError</span> <span class="o">=</span> <span class="p">[];</span> <span class="c1">// container for names of invalid attributes</span>
+
+  <span class="k">if</span> <span class="p">((</span><span class="nx">options</span><span class="p">.</span><span class="nx">field</span> <span class="o">&amp;&amp;</span> <span class="nx">options</span><span class="p">.</span><span class="nx">field</span> <span class="o">===</span> <span class="s2">&quot;title&quot;</span> <span class="o">||</span> <span class="o">!</span><span class="nx">options</span><span class="p">.</span><span class="nx">field</span><span class="p">)</span>
+      <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">validationReqs</span><span class="p">.</span><span class="nx">title</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">attrs</span><span class="p">.</span><span class="nx">title</span><span class="p">)){</span>
+      <span class="nx">validationError</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">((</span><span class="nx">options</span><span class="p">.</span><span class="nx">field</span> <span class="o">&amp;&amp;</span> <span class="nx">options</span><span class="p">.</span><span class="nx">field</span> <span class="o">===</span> <span class="s2">&quot;released&quot;</span> <span class="o">||</span> <span class="o">!</span><span class="nx">options</span><span class="p">.</span><span class="nx">field</span><span class="p">)</span>
+      <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">validationReqs</span><span class="p">.</span><span class="nx">released</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">attrs</span><span class="p">.</span><span class="nx">released</span><span class="p">)){</span>
+      <span class="nx">validationError</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;released&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">((</span><span class="nx">options</span><span class="p">.</span><span class="nx">field</span> <span class="o">&amp;&amp;</span> <span class="nx">options</span><span class="p">.</span><span class="nx">field</span> <span class="o">===</span> <span class="s2">&quot;director&quot;</span> <span class="o">||</span> <span class="o">!</span><span class="nx">options</span><span class="p">.</span><span class="nx">field</span><span class="p">)</span>
+      <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">validationReqs</span><span class="p">.</span><span class="nx">director</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">attrs</span><span class="p">.</span><span class="nx">director</span><span class="p">)){</span>
+      <span class="nx">validationError</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;director&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">((</span><span class="nx">options</span><span class="p">.</span><span class="nx">field</span> <span class="o">&amp;&amp;</span> <span class="nx">options</span><span class="p">.</span><span class="nx">field</span> <span class="o">===</span> <span class="s2">&quot;starring&quot;</span> <span class="o">||</span> <span class="o">!</span><span class="nx">options</span><span class="p">.</span><span class="nx">field</span><span class="p">)</span>
+      <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">validationReqs</span><span class="p">.</span><span class="nx">starring</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">attrs</span><span class="p">.</span><span class="nx">starring</span><span class="p">)){</span>
+      <span class="nx">validationError</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;starring&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">((</span><span class="nx">options</span><span class="p">.</span><span class="nx">field</span> <span class="o">&amp;&amp;</span> <span class="nx">options</span><span class="p">.</span><span class="nx">field</span> <span class="o">===</span> <span class="s2">&quot;genre&quot;</span> <span class="o">||</span> <span class="o">!</span><span class="nx">options</span><span class="p">.</span><span class="nx">field</span><span class="p">)</span>
+      <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">validationReqs</span><span class="p">.</span><span class="nx">starring</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">attrs</span><span class="p">.</span><span class="nx">genre</span><span class="p">)){</span>
+      <span class="nx">validationError</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;genre&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">((</span><span class="nx">options</span><span class="p">.</span><span class="nx">field</span> <span class="o">&amp;&amp;</span> <span class="nx">options</span><span class="p">.</span><span class="nx">field</span> <span class="o">===</span> <span class="s2">&quot;rating&quot;</span> <span class="o">||</span> <span class="o">!</span><span class="nx">options</span><span class="p">.</span><span class="nx">field</span><span class="p">)</span>
+      <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">validationReqs</span><span class="p">.</span><span class="nx">rating</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">attrs</span><span class="p">.</span><span class="nx">rating</span><span class="p">)){</span>
+      <span class="nx">validationError</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;rating&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">((</span><span class="nx">options</span><span class="p">.</span><span class="nx">field</span> <span class="o">&amp;&amp;</span> <span class="nx">options</span><span class="p">.</span><span class="nx">field</span> <span class="o">===</span> <span class="s2">&quot;duration&quot;</span> <span class="o">||</span> <span class="o">!</span><span class="nx">options</span><span class="p">.</span><span class="nx">field</span><span class="p">)</span>
+      <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">validationReqs</span><span class="p">.</span><span class="nx">duration</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">attrs</span><span class="p">.</span><span class="nx">duration</span><span class="p">)){</span>
+      <span class="nx">validationError</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;duration&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">((</span><span class="nx">options</span><span class="p">.</span><span class="nx">field</span> <span class="o">&amp;&amp;</span> <span class="nx">options</span><span class="p">.</span><span class="nx">field</span> <span class="o">===</span> <span class="s2">&quot;synopsis&quot;</span> <span class="o">||</span> <span class="o">!</span><span class="nx">options</span><span class="p">.</span><span class="nx">field</span><span class="p">)</span>
+      <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">validationReqs</span><span class="p">.</span><span class="nx">synopsis</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">attrs</span><span class="p">.</span><span class="nx">synopsis</span><span class="p">)){</span>
+      <span class="nx">validationError</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;synopsis&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">((</span><span class="nx">options</span><span class="p">.</span><span class="nx">field</span> <span class="o">&amp;&amp;</span> <span class="nx">options</span><span class="p">.</span><span class="nx">field</span> <span class="o">===</span> <span class="s2">&quot;trailer&quot;</span> <span class="o">||</span> <span class="o">!</span><span class="nx">options</span><span class="p">.</span><span class="nx">field</span><span class="p">)</span>
+      <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">validationReqs</span><span class="p">.</span><span class="nx">trailer</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">attrs</span><span class="p">.</span><span class="nx">trailer</span><span class="p">)){</span>
+      <span class="nx">validationError</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;trailer&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<p>dated is a Date value</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">options</span><span class="p">.</span><span class="nx">field</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">attrs</span><span class="p">.</span><span class="nx">dated</span> <span class="k">instanceof</span> <span class="nb">Date</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">validationError</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;dated&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>if any attributes were invalid, return a list of names of invalid
+attributes; else, return nothing</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">_</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">(</span><span class="nx">validationError</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">validationError</span><span class="p">;</span>
+  <span class="p">}</span>
+    <span class="p">},</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>Regexs describing the validation requirements for each movie form field</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">validationReqs</span><span class="o">:</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>title must consist of one or more letter and/or digit characters
+optionally with space characters and special characters: 
+",", ".", "!", "?", "-", "'", "*"</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s2">&quot;^[a-zA-Z0-9 ,.!?*\&#39;\-]*[a-zA-Z0-9]+[a-zA-Z0-9 ,.!?*\&#39;\-]*$&quot;</span><span class="p">),</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>released must be a 4-digit year in the range 1910-2016    </p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="s2">&quot;released&quot;</span><span class="o">:</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s2">&quot;^19[1-9][0-9]$|^200[0-9]$|^201[0-6]$&quot;</span><span class="p">),</span>
+  
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>director must consist of one or more letter characters optionally with
+digit and space characters and special characters: 
+",", ".", "!", "?", "-", "'", "*".</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="s2">&quot;director&quot;</span><span class="o">:</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s2">&quot;^[a-zA-Z0-9 ,.!?*\&#39;\-]*[a-zA-Z]+[a-zA-Z0-9 ,.!?*\&#39;\-]*$&quot;</span><span class="p">),</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>starring must consist of one-or-more comma-separated sequences of 
+whitespace-separated words, each such word which may optionally 
+include special characters: "-", "'".</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="s2">&quot;starring&quot;</span><span class="o">:</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s2">&quot;^[\\w\-\&#39;]*\\w+[\\w\-\&#39;]*(\\s+[\\w\-\&#39;]*\\w+[\\w\-\&#39;]*)*&quot;</span> <span class="o">+</span>
+             <span class="s2">&quot;(,\\s*[\\w\-\&#39;]*\\w+[\\w\-\&#39;]*(\\s+[\\w\-\&#39;]*\\w+[\\w\-\&#39;]*)*)*$&quot;</span><span class="p">),</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<p>genre must consist of one-or-more comma-separated sequences of 
+whitespace-separated words, each such word which may optionally 
+include special characters: "-", "'".</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="s2">&quot;genre&quot;</span><span class="o">:</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s2">&quot;^[\\w\-\&#39;]*\\w+[\\w\-\&#39;]*(\\s+[\\w\-\&#39;]*\\w+[\\w\-\&#39;]*)*&quot;</span> <span class="o">+</span> 
+          <span class="s2">&quot;(,\\s*[\\w\-\&#39;]*\\w+[\\w\-\&#39;]*(\\s+[\\w\-\&#39;]*\\w+[\\w\-\&#39;]*)*)*$&quot;</span><span class="p">),</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>rating must consist of one of the MPAA rating values G, PG, PG-13, R, 
+NC-17, NR</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="s2">&quot;rating&quot;</span><span class="o">:</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s2">&quot;^G$|^PG$|^PG-13$|^R$|^NC-17$|^NR$&quot;</span><span class="p">),</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<p>duration must consist of an integer in the range 0-999</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="s2">&quot;duration&quot;</span><span class="o">:</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s2">&quot;^\\d{1,3}$&quot;</span><span class="p">),</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
+</div>
+<p>synopsis must consist of a non-empty word list</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="s2">&quot;synopsis&quot;</span><span class="o">:</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s2">&quot;^.*\\w+.*(.*\\w+.*)*$&quot;</span><span class="p">),</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+</div>
+<p>trailer must be either an empty string or a properly-formatted URL 
+(e.g. <a href='http://www.example.com'>http://www.example.com</a>). Note, this is a syntactic-only check, 
+does not verify that the URL references an active site.    </p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="s2">&quot;trailer&quot;</span><span class="o">:</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s2">&quot;^$|^https?://\\w+(\.\\w+)*(/[\\w\.#]+)*/?$&quot;</span><span class="p">)</span>
+  
+    <span class="p">},</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
+</div>
+<p>Text to be displayed for each form field if its value does not pass the 
+validation check
+First array element is text to be displayed if field is empty
+Second array element is text to be displayed if field is non-empty</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">validationReqsText</span><span class="o">:</span> <span class="p">{</span>
+  <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;You must enter a title&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Only 1 or more letters-digits-spaces allowed&quot;</span><span class="p">],</span>
+  <span class="s2">&quot;released&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;You must enter a release date&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Release date must be a year between 1910 and 2016&quot;</span><span class="p">],</span>
+  <span class="s2">&quot;director&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;You must enter a director&#39;s name&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Only 1 or more letters-digits-spaces allowed&quot;</span><span class="p">],</span>
+  <span class="s2">&quot;starring&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;You must enter at least one actor&#39;s name&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Names must be letters-digits-spaces separated by commas&quot;</span><span class="p">],</span>
+  <span class="s2">&quot;rating&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;You must enter a rating&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;Rating must be one of: G, PG, PG-13, R, NC-17, NR&quot;</span><span class="p">],</span>
+  <span class="s2">&quot;duration&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;You must enter a duration&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Duration must be 0-999 minutes&quot;</span><span class="p">],</span>
+  <span class="s2">&quot;genre&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;You must enter at least one genre&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Genres must be letters-digits-spaces separated by commas&quot;</span><span class="p">],</span>
+  <span class="s2">&quot;synopsis&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;You must enter a synopsis&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Only 1 or more letters-digits-spaces allowed&quot;</span><span class="p">],</span>
+  <span class="s2">&quot;trailer&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;Trailer must be a properly-formatted URL&quot;</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

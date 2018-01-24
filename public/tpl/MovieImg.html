@@ -1,0 +1,35 @@
+<div id="movieimg">
+  <!-- used in Step 2
+       <div id="summary"><span id="avg"></span></div> -->
+
+  <div id="swatch" class="col-xs-1"><div id="avg"></div>
+    <div id="revLink"><a href=<%-"#movies/" + this.model.id + "/reviews"%>>REVIEW</a></div>
+  </div>
+  
+  <!-- Save Changes and Delete Movie buttons-->
+  <div class="col-xs-5 editActions">
+    <input type="button" id="moviesave"
+	   class="btn btn-primary save"
+	   name="save" value="Save Changes"/>
+    <input type="button" id="moviedel"
+	   class="btn btn-danger delete"
+	   name="delete" value="Delete Movie"/>
+  </div>
+
+  <!-- movie poster thumbnail, which demarcates "drop region" for drag-and-drop actions -->
+  <img id="detailsImage" class="img-responsive col-xs-12" src="<%- poster %>" 
+       alt="Movie Poster">
+
+  <div id="movieinput">
+    <span id="instr">Drag-drop photo onto above image, or</span>
+    <!-- button for selecting file to upload as new movie poster -->
+    <button id="upload-btn" class="btn btn-primary">Snap Photo/</br>Choose File
+    </button>
+  </div>
+
+  <!-- file-type input for uploading file from filesystem or capturing
+       image from camera (not visible) -->
+  <form>
+    <input type="file" name="pic" accept="image/*" capture>
+  </form>
+</div>

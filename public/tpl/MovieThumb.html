@@ -1,0 +1,42 @@
+<!-- Individual movie thumbnail, with information interpolated from corresponding 
+     movie model -->
+<div class="thumbnails col-lg-2 col-md-3 col-sm-4 col-xs-6">
+  <div class="thumbnail plain" title="<%- title %>">
+    <div class="browse">
+
+      <!-- thumbnail is wrapped in a hyperlink anchor, so that, when a user clicks
+	   on a thumbnail, view changes to details view for clicked movie -->
+      <a href="#movies/<%- _id %>" class="plain">
+        <video class="img-responsive" controls poster="<%- poster %>" preload="none">
+            <source src="<%- trailer %>" type="video/mp4"/>
+            <!-- fallback -->
+            Your browser does not support the video tag.
+        </video>
+
+	<!-- description of movie (each list item corresponds to a line containing
+	     1 or more movie attributes) -->
+        <div class="description">
+	  <div class="col-xs-1 swatch"
+	       style="background-image: <% if (freshTotal/freshVotes < 0.5){ %> url('img/rotten.png') <% } else { %> url('img/fresh.png') <% } %>, linear-gradient(palegreen,forestgreen);">
+
+	    <% if (freshVotes > 0){ %> 
+	    <div class="avg"><%- (freshTotal/freshVotes*100).toFixed(1) %>% (<%- freshVotes %>)</div>
+	    <% } else { %>
+	    <div class="avg">N/A</div>
+	    <% } %>
+	    <div class="revLink"><a href="#movies/<%- _id %>/reviews">REVIEW</a></div>
+	  </div>
+
+	  <ul>
+	    <li><span class="movie-title"><strong><%- title %></strong></span> 
+	      (<%- released %>)</li>
+            <li><strong>Directed by:</strong> <%- director %></li>
+	    <li><strong>Starring:</strong> <%- starring.join(', ') %></li>
+	    <li><strong>Genres:</strong> <%- genre.join(', ') %> 
+	      <strong>Rating:</strong> <%- rating %></li>
+	  </ul>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

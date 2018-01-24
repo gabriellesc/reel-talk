@@ -1,0 +1,76 @@
+<div id="movieform">
+
+  <!-- form with input fields for movie attributes -->
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label class="col-sm-3 control-label valid" for="title">Title</label>
+      <input name="title" type="text" class="col-sm-9 form-control"
+             placeholder="e.g. Day of the Jackal"
+             value="<%- title %>">
+      <span class="help-block"></span>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label valid" for="released">Released</label>
+      <input name="released" type="text" class="col-sm-9 form-control"
+	     placeholder="e.g. 1969"
+             value="<%- released %>">
+      <span class="help-block"></span>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label valid" for="director">Director</label>
+      <input name="director" type="text" class="col-sm-9 form-control"
+	     placeholder="e.g. Steven Spielberg"
+             value="<%- director %>">
+      <span class="help-block"></span>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label valid" for="rating">Rating</label>
+      <input name="rating" type="text" class="col-sm-9 form-control"
+	     placeholder="e.g. G, PG, PG-13, R"
+             value="<%- rating %>">
+      <span class="help-block"></span>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label valid" for="starring">Starring</label>
+      <input name="starring" type="text" class="col-sm-9 form-control"
+	     placeholder="e.g. Steve Martin, John Belushi"
+             value="<%- starring.join(', ') %>">
+      <span class="help-block"></span>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label valid" for="duration">Duration</label>
+      <input name="duration" type="text" class="col-sm-9 form-control"
+	     placeholder="e.g. 122 minutes"
+             value="<%- duration %>">
+      <span class="help-block"></span>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label valid" for="genre">Genre(s)</label>
+      <input name="genre" type="text" class="col-sm-9 form-control"
+	     placeholder="e.g. comedy, thriller, action"
+             value="<%- genre.join(', ') %>">
+      <span class="help-block"></span>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label valid" for="synopsis">Synopsis</label>
+      <textarea name="synopsis" class="col-sm-9 form-control"
+		placeholder="summary of the movie plot" rows="6"><%- synopsis %></textarea>
+      <span class="help-block"></span>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label valid" for="trailer">Trailer URL</label>
+      <input name="trailer" type="text" class="col-sm-9 form-control"
+	     placeholder="e.g. https://www.archive.org/"
+             value="<%- trailer %>">
+      <span class="help-block"></span>
+    </div>
+  </form>
+</div>

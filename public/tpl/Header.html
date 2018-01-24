@@ -1,0 +1,96 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+
+	    <!-- when header collapses, display a dropdown with 3 icon-bar's -->
+            <button type="button" class="navbar-toggle collapsed" 
+		    data-toggle="collapse" data-target="#nav-collapse">
+                <span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+            </button>
+
+	    <!-- The name of your app should be displayed in a 125%-sized font on the 
+		 left side of the navbar; clicking on the navbar app-name should return
+		 the user to your app's startup or "Home" view -->
+            <a id="app-name" class="navbar-brand home-menu" href="#">Reel Talk</a>
+	    </div>
+
+        <div id="nav-collapse" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+
+	    <li id="signupdrop" class="dropdown browse-menu"><a>Sign Up</a>
+	      <div class="dropdown-menu" id="signupDiv">
+		<form id="signupForm">
+		  <input class="signup" name="username" type="text" 
+			 placeholder="User Name" maxlength=15 size=30 />
+		  <span class="signup help-block"></span>
+		  <input class="signup" name="email" type="text" 
+			 placeholder="Email Address" maxlength=50 size=30 />
+		  <span class="signup help-block"></span>
+		  <input class="signup" name="password" type="password" 
+			 placeholder="Password" maxlength=50 size=30 />
+		  <span class="signup help-block"></span>
+		  <input class="signup" name="password2" type="password" 
+			 placeholder="Re-Type Password" maxlength=50 size=30 />
+		  <span class="signup help-block"></span>
+		  <input name="signupbtn" type="button" class="btn btn-primary" value="Sign Up" />
+		</form>
+	      </div>
+	    </li>
+
+	    <li id="signindrop" class="dropdown browse-menu">
+	      <a id="greet">Sign In</a>
+	      <div class="dropdown-menu" id="signinDiv">
+		<form id="signinForm">
+		  <fieldset>
+		    <input class="signin" name="username" type="text" 
+			   placeholder="User Name" maxlength=15 autofocus />
+		    <input class="signin" name="password" type="password" 
+			   placeholder="Password" maxlength=50 />
+		    <label class="signin">
+		      <input name="remember" type="checkbox" value="1" />
+			remember me</label>
+		    <input name="signinbtn" type="button" 
+			   class="btn btn-primary btn-block" value="Sign In" />
+		  </fieldset>
+		</form>
+		<form id="signoutForm">
+		  <div id="signoutUsername"></div>
+		  <input name="signoutbtn" type="button" 
+			 class="btn btn-primary btn-block" value="Sign Out" />
+		</form>
+	      </div>
+	    </li>
+
+	    <!-- An "About" link should be displayed on the right side of the 
+		 navbar; clicking on the "About" link should switch to the 
+		 "About" view -->
+            <li id="about-menu"><a href="#about">About</a></li>
+          </ul>
+
+	  <ul class="nav navbar-nav">
+
+	    <li id="orderdrop" class="dropdown browse-menu">
+	      <a id="ordering" href="#movies" >Browse Movies</a>
+	      <div class="dropdown-menu" id="orderDiv">
+		<form id="orderForm">
+		  <fieldset>
+		    <div id="sortTitle">Sort Order</div>
+		    <input class="sortOrder" name="sortOrder" type="radio" value="title" checked/>
+		    <label for="sortOrder">Title</label><br/>
+		    <input class="sortOrder" name="sortOrder" type="radio" value="director" />
+		    <label for="sortOrder">Director</label><br/>
+		  </fieldset>
+		</form>
+	      </div>
+	    </li>
+
+	    <li id="details-menu"><a href="#movies/add">Add Movie</a></li>
+	  </ul>
+        </div> <!--/.nav-collapse -->
+    </div>
+</nav>
+
+<!-- container to hold the notification panel -->
+<div id="notifications" class="alert"></div>

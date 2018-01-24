@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MovieThumb.html</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../doc-style.css" />
+  <script src="../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../", thisFile = "courses/courses/cscc09f15/singhcad/a2/public/tpl/MovieThumbhtml", defaultSidebar = true;
+  </script>
+  <script src="../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>MovieThumb.html</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<p>Individual movie thumbnail, with information interpolated from corresponding 
+movie model    </p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;thumbnails col-lg-2 col-md-3 col-sm-4 col-xs-6&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;thumbnail plain&quot;</span> <span class="na">title=</span><span class="s">&quot;&lt;%= title %&gt;&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;browse&quot;</span><span class="nt">&gt;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code>  <span class="nx">thumbnail</span> <span class="nx">is</span> <span class="nx">wrapped</span> <span class="k">in</span> <span class="nx">a</span> <span class="nx">hyperlink</span> <span class="nx">anchor</span><span class="p">,</span> <span class="nx">so</span> <span class="nx">that</span><span class="p">,</span> <span class="nx">when</span> <span class="nx">a</span> <span class="nx">user</span> <span class="nx">clicks</span>
+</code></pre></div>
+
+
+
+<p>on a thumbnail, view changes to details view for clicked movie    </p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#movies/&lt;%= _id %&gt;&quot;</span> <span class="na">class=</span><span class="s">&quot;plain&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;video</span> <span class="na">class=</span><span class="s">&quot;img-responsive&quot;</span> <span class="na">controls</span> <span class="na">poster=</span><span class="s">&quot;&lt;%= poster %&gt;&quot;</span> <span class="na">preload=</span><span class="s">&quot;none&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;source</span> <span class="na">src=</span><span class="s">&quot;&lt;%= trailer %&gt;&quot;</span> <span class="na">type=</span><span class="s">&quot;video/mp4&quot;</span><span class="nt">/&gt;</span>
+            <span class="c">&lt;!-- fallback --&gt;</span>
+            Your browser does not support the video tag.
+        <span class="nt">&lt;/video&gt;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>description of movie (each list item corresponds to a line containing
+1 or more movie attributes)    </p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;description&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;col-xs-1 swatch&quot;</span>
+         <span class="na">style=</span><span class="s">&quot;background-image: &lt;% if (freshTotal/freshVotes &lt; 0.5){ %&gt; url(&#39;img/rotten.png&#39;) &lt;% } else { %&gt; url(&#39;img/fresh.png&#39;) &lt;% } %&gt;, linear-gradient(palegreen,forestgreen);&quot;</span><span class="nt">&gt;</span>
+
+      <span class="err">&lt;</span>% if (freshVotes &gt; 0){ %&gt; 
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;avg&quot;</span><span class="nt">&gt;</span><span class="err">&lt;</span>%= (freshTotal/freshVotes*100).toFixed(1) %&gt;% (<span class="err">&lt;</span>%= freshVotes %&gt;)<span class="nt">&lt;/div&gt;</span>
+      <span class="err">&lt;</span>% } else { %&gt;
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;avg&quot;</span><span class="nt">&gt;</span>N/A<span class="nt">&lt;/div&gt;</span>
+      <span class="err">&lt;</span>% } %&gt;
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;revLink&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#movies/&lt;%= _id %&gt;/reviews&quot;</span><span class="nt">&gt;</span>REVIEW<span class="nt">&lt;/a&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;ul&gt;</span>
+      <span class="nt">&lt;li&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;movie-title&quot;</span><span class="nt">&gt;&lt;strong&gt;</span><span class="err">&lt;</span>%= title %&gt;<span class="nt">&lt;/strong&gt;&lt;/span&gt;</span> 
+        (<span class="err">&lt;</span>%= released %&gt;)<span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;li&gt;&lt;strong&gt;</span>Directed by:<span class="nt">&lt;/strong&gt;</span> <span class="err">&lt;</span>%= director %&gt;<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;&lt;strong&gt;</span>Starring:<span class="nt">&lt;/strong&gt;</span> <span class="err">&lt;</span>%= starring.join(&#39;, &#39;) %&gt;<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;&lt;strong&gt;</span>Genres:<span class="nt">&lt;/strong&gt;</span> <span class="err">&lt;</span>%= genre.join(&#39;, &#39;) %&gt; 
+        <span class="nt">&lt;strong&gt;</span>Rating:<span class="nt">&lt;/strong&gt;</span> <span class="err">&lt;</span>%= rating %&gt;<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

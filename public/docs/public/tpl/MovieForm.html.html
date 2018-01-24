@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MovieForm.html</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../doc-style.css" />
+  <script src="../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../", thisFile = "courses/courses/cscc09f15/singhcad/a2/public/tpl/MovieFormhtml", defaultSidebar = true;
+  </script>
+  <script src="../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>MovieForm.html</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;movieform&quot;</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- form with input fields for movie attributes --&gt;</span>
+  <span class="nt">&lt;form</span> <span class="na">class=</span><span class="s">&quot;form-horizontal&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;col-sm-3 control-label valid&quot;</span> <span class="na">for=</span><span class="s">&quot;title&quot;</span><span class="nt">&gt;</span>Title<span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">&quot;title&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">class=</span><span class="s">&quot;col-sm-9 form-control&quot;</span>
+             <span class="na">placeholder=</span><span class="s">&quot;e.g. Day of the Jackal&quot;</span>
+             <span class="na">value=</span><span class="s">&quot;&lt;%= title %&gt;&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;help-block&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;col-sm-3 control-label valid&quot;</span> <span class="na">for=</span><span class="s">&quot;released&quot;</span><span class="nt">&gt;</span>Released<span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">&quot;released&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">class=</span><span class="s">&quot;col-sm-9 form-control&quot;</span>
+       <span class="na">placeholder=</span><span class="s">&quot;e.g. 1969&quot;</span>
+             <span class="na">value=</span><span class="s">&quot;&lt;%= released %&gt;&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;help-block&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;col-sm-3 control-label valid&quot;</span> <span class="na">for=</span><span class="s">&quot;director&quot;</span><span class="nt">&gt;</span>Director<span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">&quot;director&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">class=</span><span class="s">&quot;col-sm-9 form-control&quot;</span>
+       <span class="na">placeholder=</span><span class="s">&quot;e.g. Steven Spielberg&quot;</span>
+             <span class="na">value=</span><span class="s">&quot;&lt;%= director %&gt;&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;help-block&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;col-sm-3 control-label valid&quot;</span> <span class="na">for=</span><span class="s">&quot;rating&quot;</span><span class="nt">&gt;</span>Rating<span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">&quot;rating&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">class=</span><span class="s">&quot;col-sm-9 form-control&quot;</span>
+       <span class="na">placeholder=</span><span class="s">&quot;e.g. G, PG, PG-13, R&quot;</span>
+             <span class="na">value=</span><span class="s">&quot;&lt;%= rating %&gt;&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;help-block&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;col-sm-3 control-label valid&quot;</span> <span class="na">for=</span><span class="s">&quot;starring&quot;</span><span class="nt">&gt;</span>Starring<span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">&quot;starring&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">class=</span><span class="s">&quot;col-sm-9 form-control&quot;</span>
+       <span class="na">placeholder=</span><span class="s">&quot;e.g. Steve Martin, John Belushi&quot;</span>
+             <span class="na">value=</span><span class="s">&quot;&lt;%= starring.join(&#39;, &#39;) %&gt;&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;help-block&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;col-sm-3 control-label valid&quot;</span> <span class="na">for=</span><span class="s">&quot;duration&quot;</span><span class="nt">&gt;</span>Duration<span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">&quot;duration&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">class=</span><span class="s">&quot;col-sm-9 form-control&quot;</span>
+       <span class="na">placeholder=</span><span class="s">&quot;e.g. 122 minutes&quot;</span>
+             <span class="na">value=</span><span class="s">&quot;&lt;%= duration %&gt;&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;help-block&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;col-sm-3 control-label valid&quot;</span> <span class="na">for=</span><span class="s">&quot;genre&quot;</span><span class="nt">&gt;</span>Genre(s)<span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">&quot;genre&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">class=</span><span class="s">&quot;col-sm-9 form-control&quot;</span>
+       <span class="na">placeholder=</span><span class="s">&quot;e.g. comedy, thriller, action&quot;</span>
+             <span class="na">value=</span><span class="s">&quot;&lt;%= genre.join(&#39;, &#39;) %&gt;&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;help-block&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;col-sm-3 control-label valid&quot;</span> <span class="na">for=</span><span class="s">&quot;synopsis&quot;</span><span class="nt">&gt;</span>Synopsis<span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;textarea</span> <span class="na">name=</span><span class="s">&quot;synopsis&quot;</span> <span class="na">class=</span><span class="s">&quot;col-sm-9 form-control&quot;</span>
+    <span class="na">placeholder=</span><span class="s">&quot;summary of the movie plot&quot;</span> <span class="na">rows=</span><span class="s">&quot;6&quot;</span><span class="nt">&gt;</span><span class="err">&lt;</span>%= synopsis %&gt;<span class="nt">&lt;/textarea&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;help-block&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;col-sm-3 control-label valid&quot;</span> <span class="na">for=</span><span class="s">&quot;trailer&quot;</span><span class="nt">&gt;</span>Trailer URL<span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">&quot;trailer&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">class=</span><span class="s">&quot;col-sm-9 form-control&quot;</span>
+       <span class="na">placeholder=</span><span class="s">&quot;e.g. https://www.archive.org/&quot;</span>
+             <span class="na">value=</span><span class="s">&quot;&lt;%= trailer %&gt;&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;help-block&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/form&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

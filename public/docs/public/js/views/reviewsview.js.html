@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>reviewsview.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../../doc-style.css" />
+  <script src="../../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../../", thisFile = "courses/courses/cscc09f15/singhcad/a2/public/js/views/reviewsviewjs", defaultSidebar = true;
+  </script>
+  <script src="../../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>reviewsview.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<p>catch simple errors</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>declare reel-app namespace if it doesn't already exist</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">reel</span> <span class="o">=</span>  <span class="nx">reel</span> <span class="o">||</span> <span class="p">{};</span>
+
+<span class="nx">reel</span><span class="p">.</span><span class="nx">ReviewsView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+
+    <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>define sub-views</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">this</span><span class="p">.</span><span class="nx">reviewerView</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">reel</span><span class="p">.</span><span class="nx">Reviewer</span><span class="p">({</span><span class="nx">model</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">});</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">reviewThumbsView</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">reel</span><span class="p">.</span><span class="nx">ReviewThumbs</span><span class="p">({</span><span class="nx">collection</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">});</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<p>get associated movie model from input to view constructor</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">this</span><span class="p">.</span><span class="nx">movie</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">movie</span><span class="p">;</span>
+  
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>invoke showScore and renderReviews methods when collection is sync'd</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">this</span><span class="p">.</span><span class="nx">listenTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">,</span> <span class="s2">&quot;sync&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">showScore</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">listenTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">,</span> <span class="s2">&quot;sync&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">renderReviews</span><span class="p">);</span>
+    <span class="p">},</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>render the View</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>set the view element ($el) HTML content using its template</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">());</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>render sub-views</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">this</span><span class="p">.</span><span class="nx">reviewerView</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">reviewThumbsView</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>inject sub-views into page</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">this</span><span class="p">.</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#reviewer&#39;</span><span class="p">).</span><span class="nx">replaceWith</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">reviewerView</span><span class="p">.</span><span class="nx">el</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#reviewThumbs&#39;</span><span class="p">).</span><span class="nx">replaceWith</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">reviewThumbsView</span><span class="p">.</span><span class="nx">el</span><span class="p">);</span>
+
+  <span class="k">this</span><span class="p">.</span><span class="nx">showScore</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="k">this</span><span class="p">;</span>    <span class="c1">// support method chaining</span>
+    <span class="p">},</span> 
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>remove subviews on close of Reviews view</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">onClose</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">reviewerView</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">reviewerView</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span> <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">reviewThumbsView</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">reviewThumbsView</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span> <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="nx">events</span><span class="o">:</span> <span class="p">{</span>
+  <span class="s2">&quot;change .form-control&quot;</span><span class="o">:</span> <span class="s2">&quot;changeHandler&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;change [type=&#39;radio&#39;]&quot;</span><span class="o">:</span> <span class="s2">&quot;changeHandler&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;click #review-btn&quot;</span><span class="o">:</span> <span class="s2">&quot;saveHandler&quot;</span>
+    <span class="p">},</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<p>display review summary</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">showScore</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>re-fetch associated movie model to get freshTotal and freshVotes
+attributes related to reviews</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">this</span><span class="p">.</span><span class="nx">movie</span><span class="p">.</span><span class="nx">fetch</span><span class="p">({</span>
+
+      <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<p>if no reviews have been created yet, show "... no reviews yet"</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">movie</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;freshVotes&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#summary&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s2">&quot;... no reviews yet&quot;</span><span class="p">);</span>
+        
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
+</div>
+<p>calculate average number of "fresh" votes, to 1 decimal place</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="kd">var</span> <span class="nx">avg</span> <span class="o">=</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">movie</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;freshTotal&quot;</span><span class="p">)</span><span class="o">/</span>
+             <span class="nx">self</span><span class="p">.</span><span class="nx">movie</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;freshVotes&quot;</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+</div>
+<p>display average with appropriate "fresh" or "rotten" image</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#summary&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s2">&quot;currently rated: &lt;img src=&#39;&quot;</span> 
+              <span class="o">+</span> <span class="p">(</span><span class="nx">avg</span> <span class="o">&lt;</span> <span class="mi">50</span> <span class="o">?</span> <span class="s2">&quot;../img/rotten.png&quot;</span> <span class="o">:</span> <span class="s2">&quot;../img/fresh.png&quot;</span><span class="p">)</span>
+              <span class="o">+</span> <span class="s2">&quot;&#39;&gt; &quot;</span> <span class="o">+</span> <span class="nx">avg</span> <span class="o">+</span> <span class="s2">&quot;% (&quot;</span> 
+              <span class="o">+</span> <span class="nx">self</span><span class="p">.</span><span class="nx">movie</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;freshVotes&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+      <span class="p">}</span>
+  <span class="p">});</span>
+    <span class="p">},</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
+</div>
+<p>(re-)render review thumbnails</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">renderReviews</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+</div>
+<p>create new review model for this view</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">this</span><span class="p">.</span><span class="nx">model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">reel</span><span class="p">.</span><span class="nx">Review</span><span class="p">({</span><span class="nx">movieId</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">movie</span><span class="p">.</span><span class="nx">id</span><span class="p">});</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">reviewerView</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">reel</span><span class="p">.</span><span class="nx">Reviewer</span><span class="p">({</span><span class="nx">model</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">});</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#reviewer&#39;</span><span class="p">).</span><span class="nx">replaceWith</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">reviewerView</span><span class="p">.</span><span class="nx">el</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">reviewerView</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-18" id="section-18">&#182;</a>
+</div>
+<p>reset freshness radio buttons to default state ("rotten" is checked)</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">this</span><span class="p">.</span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;[value=0]:radio&quot;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;checked&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+  <span class="k">this</span><span class="p">.</span><span class="nx">reviewThumbsView</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+    <span class="p">},</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-19" id="section-19">&#182;</a>
+</div>
+<p>if user changes input field value, update corresponding review model value</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">changeHandler</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+    <span class="p">},</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-20" id="section-20">&#182;</a>
+</div>
+<p>save review model to server</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">saveHandler</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">,</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-21" id="section-21">&#182;</a>
+</div>
+<p>don't add new model to client collection until server responds</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="nx">wait</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nx">silent</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      
+      <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-22" id="section-22">&#182;</a>
+</div>
+<p>show success notification in notification pane</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">reel</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">showNotice</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">,</span> <span class="s1">&#39;Success&#39;</span><span class="p">,</span> <span class="s1">&#39;Movie review saved&#39;</span><span class="p">);</span>
+      <span class="p">},</span>
+
+      <span class="nx">error</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-23" id="section-23">&#182;</a>
+</div>
+<p>display the error response from the server</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">reel</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">showNotice</span><span class="p">(</span><span class="s1">&#39;danger&#39;</span><span class="p">,</span> <span class="s1">&#39;Error&#39;</span><span class="p">,</span> <span class="s1">&#39;Movie review could not be saved &#39;</span> 
+              <span class="o">+</span> <span class="nx">response</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+      <span class="p">}</span>
+  <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>
